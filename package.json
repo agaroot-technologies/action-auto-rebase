@@ -1,9 +1,12 @@
 {
   "name": "merge-master",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "build": "ncc build src/index.ts -o dist --license licenses.txt",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "version": "changeset",
+    "version:apply": "changeset version",
+    "version:publish": "changeset tag"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
