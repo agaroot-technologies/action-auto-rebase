@@ -1,5 +1,11 @@
 # merge-master
 
+## 1.1.0
+
+### Minor Changes
+
+- 249a4c8: デフォルトブランチを取得するようにした
+
 ## 1.0.1
 
 ### Patch Changes
