@@ -1,0 +1,25 @@
+{
+  "[javascript][typescript][typescriptreact][json]": {
+    "editor.formatOnSave": false
+  },
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "prettier.enable": false,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.prettier": "never"
+  },
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "editor.unusualLineTerminators": "auto",
+  "editor.renderControlCharacters": true,
+  "cSpell.words": [
+    "praha"
+  ]
+}
