@@ -1,29 +1,38 @@
 {
   "name": "merge-master",
   "version": "1.0.0",
+  "description": "",
+  "author": "zack-msyc86",
+  "main": "index.js",
   "scripts": {
     "build": "ncc build src/index.ts -o dist --license licenses.txt",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "version": "changeset",
+    "version:apply": "changeset version",
+    "version:publish": "changeset tag"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.0",
-    "@octokit/core": "^6.1.2",
-    "@octokit/graphql": "^8.1.1",
-    "@octokit/rest": "^21.0.0"
+    "@actions/core": "1.11.1",
+    "@actions/github": "6.0.0",
+    "@octokit/core": "6.1.3",
+    "@octokit/graphql": "8.1.2",
+    "@octokit/rest": "21.1.0",
+    "graphql": "16.10.0",
+    "graphql-tag": "2.12.6"
   },
   "devDependencies": {
-    "@agaroot/eslint-config-common": "^3.0.6",
-    "@agaroot/eslint-config-definer": "^1.0.5",
-    "@agaroot/eslint-config-javascript": "^2.0.7",
-    "@agaroot/eslint-config-style": "^2.0.9",
-    "@agaroot/eslint-config-typescript": "^2.0.8",
-    "@changesets/cli": "^2.27.9",
-    "@octokit/graphql-schema": "^15.25.0",
-    "@tsconfig/strictest": "^2.0.5",
-    "@vercel/ncc": "^0.38.2",
-    "eslint": "^8.57.1",
-    "typescript": "^5.5.3"
+    "@changesets/cli": "2.27.11",
+    "@octokit/graphql-schema": "15.25.0",
+    "@praha/eslint-config-common": "4.0.1",
+    "@praha/eslint-config-definer": "2.0.1",
+    "@praha/eslint-config-javascript": "3.0.1",
+    "@praha/eslint-config-style": "3.0.2",
+    "@praha/eslint-config-typescript": "3.0.2",
+    "@tsconfig/node20": "20.1.4",
+    "@tsconfig/strictest": "2.0.5",
+    "@vercel/ncc": "0.38.3",
+    "eslint": "9.18.0",
+    "typescript": "5.7.3"
   },
-  "packageManager": "pnpm@9.12.1"
+  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
 }
