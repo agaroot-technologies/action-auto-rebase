@@ -1,5 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { print } from 'graphql';
+import { gql } from 'graphql-tag';
 
 import type { PullRequest as PullRequestTypedef } from '@octokit/graphql-schema';
 
@@ -32,7 +34,7 @@ const run = async (): Promise<void> => {
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
 
-    const query = `
+    const query = gql`
       query($owner: String!, $repo: String!) {
         repository(owner: $owner, name: $repo) {
           pullRequests(baseRefName: "main", first: 100, states: OPEN, orderBy: { field: CREATED_AT, direction: ASC }) {
@@ -53,7 +55,7 @@ const run = async (): Promise<void> => {
       }
     `;
 
-    const targetPRs: PullRequest[] = await octokit.graphql<GraphqlResponse>(query, { owner, repo })
+    const targetPRs: PullRequest[] = await octokit.graphql<GraphqlResponse>(print(query), { owner, repo })
       .then((resp) =>
         resp.repository.pullRequests.nodes.filter((pr) =>
           [

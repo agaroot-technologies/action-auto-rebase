@@ -3,30 +3,31 @@
 automatically merge main branch to topic branch or rebase renovate bot PRs.
 
 When
+
 - CI is completed
 - PR is enabled auto merge
 - main branch is updated
 
 Then
+
 - Merge main branch to a branch that is enabled auto merge
 - Rebase renovate bot PRs.
 
 If there is a PR that is running CI and following the main branch, Marge Master will not merge the main branch to the PR branch.
 
-
-# 👏 Usage
+## 👏 Usage
 
 Github Personal Access Token or Github App Token is required to use this action because a commit created via default Github Action Token cannot trigger another Github Action.
 
 The Token or App must have the following permissions:
+
 - checks: read
 - metadata: read
 - pull_requests: write
 - issues: write
 - code: write
 
-
-## With Personal Access Token
+### With Personal Access Token
 
 ```yaml
 name: Merge Master
@@ -50,12 +51,12 @@ jobs:
   merge-master:
     runs-on: ubuntu-latest
     steps:
-      - uses: agaroot-technologies/merge-master@v1.0.0
+      - uses: praha-inc/merge-master@v1
         with:
           github-token: ${{ secrets.GITHUB_PAT_TOKEN }}
 ```
 
-## With Github App Token
+### With Github App Token
 
 ```yaml
 name: Merge Master
@@ -84,21 +85,19 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-      - uses: agaroot-technologies/merge-master@main
+      - uses: praha-inc/merge-master@main
         with:
           github-token: ${{ steps.get-app-token.outputs.token }}
 ```
-
-
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome.
 
-Feel free to check [issues page](https://github.com/agaroot-technologies/merge-master/issues) if you want to contribute.
+Feel free to check [issues page](https://github.com/praha-inc/merge-master/issues) if you want to contribute.
 
 ## 📝 License
 
-Copyright © 2020 [AGAROOT TECHNOLOGIES](https://tech.agaroot.co.jp/).
+Copyright © 2020 [PrAha](https://www.praha-inc.com/).
 
-This project is [```MIT```](https://github.com/agaroot-technologies/merge-master/blob/main/LICENSE) licensed.
+This project is [```MIT```](https://github.com/praha-inc/merge-master/blob/main/LICENSE) licensed.
