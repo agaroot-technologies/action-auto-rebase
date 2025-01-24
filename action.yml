@@ -1,4 +1,4 @@
-name: '@agaroot-technologies/merge-master'
+name: Merge Master
 description: 'Automatically merge master branch to the topic branch'
 inputs:
   github-token:

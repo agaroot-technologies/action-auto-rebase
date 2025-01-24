@@ -1,19 +1,19 @@
 # Merge Master
 
-automatically merge main branch to topic branch or rebase renovate bot PRs.
+automatically merge default branch to topic branch or rebase renovate bot PRs.
 
 When
 
-- CI is completed
+- CI complete
 - PR is enabled auto merge
-- main branch is updated
+- default branch is updated
 
 Then
 
-- Merge main branch to a branch that is enabled auto merge
+- Merge default branch to a branch that is enabled auto merge
 - Rebase renovate bot PRs.
 
-If there is a PR that is running CI and following the main branch, Marge Master will not merge the main branch to the PR branch.
+If there is a PR that is running CI and following the default branch, Marge Master will not merge the default branch to the PR branch.
 
 ## 👏 Usage
 
@@ -35,7 +35,7 @@ name: Merge Master
 on:
   workflow_run:
     workflows:
-      - "{Your CI Names}"
+      - "{The slowest CI Names}"
     types:
       - completed
   pull_request:
@@ -85,7 +85,7 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-      - uses: praha-inc/merge-master@main
+      - uses: praha-inc/merge-master@v1
         with:
           github-token: ${{ steps.get-app-token.outputs.token }}
 ```

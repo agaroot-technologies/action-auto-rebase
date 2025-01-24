@@ -34,10 +34,12 @@ const run = async (): Promise<void> => {
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
 
+    const { data: { default_branch: defaultBranch } } = await octokit.rest.repos.get({ owner, repo });
+
     const query = gql`
-      query($owner: String!, $repo: String!) {
+      query($owner: String!, $repo: String!, $defaultBranch: String!) {
         repository(owner: $owner, name: $repo) {
-          pullRequests(baseRefName: "main", first: 100, states: OPEN, orderBy: { field: CREATED_AT, direction: ASC }) {
+          pullRequests(baseRefName: $defaultBranch, first: 100, states: OPEN, orderBy: { field: CREATED_AT, direction: ASC }) {
             nodes {
               id
               title
@@ -55,7 +57,7 @@ const run = async (): Promise<void> => {
       }
     `;
 
-    const targetPRs: PullRequest[] = await octokit.graphql<GraphqlResponse>(print(query), { owner, repo })
+    const targetPRs: PullRequest[] = await octokit.graphql<GraphqlResponse>(print(query), { owner, repo, defaultBranch })
       .then((resp) =>
         resp.repository.pullRequests.nodes.filter((pr) =>
           [
