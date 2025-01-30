@@ -1,5 +1,11 @@
 # merge-master
 
+## 1.1.1
+
+### Patch Changes
+
+- c851663: Build を忘れていたので Build
+
 ## 1.1.0
 
 ### Minor Changes
