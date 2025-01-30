@@ -56346,10 +56346,11 @@ const run = async () => {
         const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(token);
         const owner = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner;
         const repo = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo;
+        const { data: { default_branch: defaultBranch } } = await octokit.rest.repos.get({ owner, repo });
         const query = (0,graphql_tag__WEBPACK_IMPORTED_MODULE_2__.gql) `
-      query($owner: String!, $repo: String!) {
+      query($owner: String!, $repo: String!, $defaultBranch: String!) {
         repository(owner: $owner, name: $repo) {
-          pullRequests(baseRefName: "main", first: 100, states: OPEN, orderBy: { field: CREATED_AT, direction: ASC }) {
+          pullRequests(baseRefName: $defaultBranch, first: 100, states: OPEN, orderBy: { field: CREATED_AT, direction: ASC }) {
             nodes {
               id
               title
@@ -56366,7 +56367,7 @@ const run = async () => {
         }
       }
     `;
-        const targetPRs = await octokit.graphql((0,graphql__WEBPACK_IMPORTED_MODULE_3__.print)(query), { owner, repo })
+        const targetPRs = await octokit.graphql((0,graphql__WEBPACK_IMPORTED_MODULE_3__.print)(query), { owner, repo, defaultBranch })
             .then((resp) => resp.repository.pullRequests.nodes.filter((pr) => [
             pr.autoMergeRequest,
             pr.mergeable === 'MERGEABLE' || (pr.author.login === 'renovate' && pr.mergeable === 'CONFLICTING'),
